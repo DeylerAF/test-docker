@@ -1,17 +1,8 @@
-# Pull the official base image
-FROM python:3.12.3
-
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# Set work directory
-WORKDIR /myproject/
-
-# Install dependencies
-COPY requirements.txt /myproject/
-RUN pip install --upgrade pip
+# syntax=docker/dockerfile:1
+FROM python:3
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+WORKDIR /code
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-
-# Copy project
-COPY ./myproject/ /myproject/
+COPY . /code/
